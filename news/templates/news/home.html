@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+
+<h1>News App</h1>
+
+{% if user.is_authenticated %}
+    <p>Logged in as: {{ user.username }}</p>
+    <p>Role: {{ user.role }}</p>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <hr>
+
+    <p>
+        <a href="{% url 'articles' %}">View Approved Articles</a>
+    </p>
+
+    {% if user.role == "editor" %}
+        <p>
+            <a href="{% url 'review_articles' %}">Review Articles</a>
+        </p>
+    {% endif %}
+
+    {% if user.role == "journalist" %}
+        <p>
+            <a href="{% url 'create_article' %}">Submit Article</a>
+        </p>
+        <p>
+            <a href="#">Publish Newsletter</a>
+        </p>
+    {% endif %}
+
+    {% if user.role == "reader" %}
+        <p>
+            <a href="{% url 'get_articles' %}">View Articles</a>
+        </p>
+    {% endif %}
+
+{% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+</body>
+</html>

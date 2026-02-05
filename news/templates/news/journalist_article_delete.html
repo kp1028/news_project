@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Delete Article</title></head>
+<body style="font-family: Arial, sans-serif; margin: 24px;">
+  <h1>Delete Article</h1>
+
+  <p>Are you sure you want to delete: <strong>{{ article.title }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" style="padding:8px 12px;">Yes, delete</button>
+  </form>
+
+  <p style="margin-top: 14px;">
+    <a href="{% url 'journalist_articles' %}">Cancel</a>
+  </p>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+
+    <p>
+        {% if article.publisher %}Publisher: {{ article.publisher.name }}{% endif %}
+        {% if article.journalist %} | Journalist: {{ article.journalist.username }}{% endif %}
+    </p>
+
+    <hr>
+
+    <p>{{ article.content }}</p>
+
+    <p><a href="{% url 'articles' %}">Back to Articles</a></p>
+</body>
+</html>

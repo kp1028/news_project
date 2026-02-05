@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 24px;">
+  <div style="max-width: 520px; margin: 0 auto;">
+    <h1 style="margin-bottom: 6px;">Register</h1>
+
+    {% if error %}
+      <p style="color:#b00020;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post" style="border:1px solid #ddd; padding:14px; border-radius:6px;">
+      {% csrf_token %}
+      <p>
+        Username:<br>
+        <input type="text" name="username" style="width:100%; padding:8px;">
+      </p>
+
+      <p>
+        Password:<br>
+        <input type="password" name="password1" style="width:100%; padding:8px;">
+      </p>
+
+      <p>
+        Confirm Password:<br>
+        <input type="password" name="password2" style="width:100%; padding:8px;">
+      </p>
+      <p>
+        Role:<br>
+        <select name="role" style="width:100%; padding:8px;">
+          <option value="">-- choose --</option>
+          <option value="reader">Reader</option>
+          <option value="journalist">Journalist</option>
+          <option value="editor">Editor</option>
+        </select>
+      </p>
+
+      <button type="submit" style="padding:8px 12px; border:1px solid #333; background:white; border-radius:4px; cursor:pointer;">
+        Create account
+      </button>
+    </form>
+
+    <p style="margin-top: 14px;">
+      <a href="{% url 'login' %}">Back to Login</a>
+    </p>
+  </div>
+</body>
+</html>

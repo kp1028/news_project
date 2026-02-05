@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>My Articles</title></head>
+<body style="font-family: Arial, sans-serif; margin: 24px;">
+  <h1>My Articles</h1>
+
+  <p>
+    <a href="{% url 'create_article' %}">New Article</a> |
+    <a href="{% url 'home' %}">Home</a>
+  </p>
+
+  {% if articles %}
+    <ul>
+      {% for a in articles %}
+        <li style="margin-bottom: 10px;">
+          <strong>{{ a.title }}</strong>
+          {% if a.approved %}(approved){% else %}(not approved){% endif %}
+          <br>
+          <a href="{% url 'journalist_article_edit' a.id %}">Edit</a> |
+          <a href="{% url 'journalist_article_delete' a.id %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No articles yet.</p>
+  {% endif %}
+</body>
+</html>

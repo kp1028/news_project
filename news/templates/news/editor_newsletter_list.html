@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Newsletters</title>
+</head>
+<body>
+    <h1>All Newsletters</h1>
+
+    {% if newsletters %}
+        <ul>
+            {% for n in newsletters %}
+                <li>
+                    <strong>{{ n.title }}</strong>
+                    {% if n.publisher %} ({{ n.publisher.name }}){% endif %}
+                    {% if n.journalist %} - {{ n.journalist.username }}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No newsletters found.</p>
+    {% endif %}
+
+    <p><a href="{% url 'home' %}">Back</a></p>
+</body>
+</html>

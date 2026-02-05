@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>My Newsletters</title></head>
+<body style="font-family: Arial, sans-serif; margin: 24px;">
+  <h1>My Newsletters</h1>
+
+  <p>
+    <a href="{% url 'create_newsletter' %}">New Newsletter</a> |
+    <a href="{% url 'home' %}">Home</a>
+  </p>
+
+  {% if newsletters %}
+    <ul>
+      {% for n in newsletters %}
+        <li style="margin-bottom: 10px;">
+          <strong>{{ n.title }}</strong>
+          <br>
+          <a href="{% url 'journalist_newsletter_edit' n.id %}">Edit</a> |
+          <a href="{% url 'journalist_newsletter_delete' n.id %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No newsletters yet.</p>
+  {% endif %}
+</body>
+</html>

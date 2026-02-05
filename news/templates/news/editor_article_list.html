@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Review Articles</title>
+</head>
+<body>
+    <h1>Articles Pending Review</h1>
+
+    {% if articles %}
+        <ul>
+            {% for a in articles %}
+                <li style="margin-bottom: 18px;">
+                    <h3 style="margin: 0 0 6px 0;">{{ a.title }}</h3>
+
+                    <p style="margin: 0 0 6px 0;">
+                        {% if a.publisher %}<strong>Publisher:</strong> {{ a.publisher.name }}{% endif %}
+                        {% if a.journalist %} | <strong>Journalist:</strong> {{ a.journalist.username }}{% endif %}
+                    </p>
+
+                    <p style="margin: 0 0 10px 0;">{{ a.content }}</p>
+
+                    <form method="post" action="{% url 'approve_article' a.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Approve</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles waiting for approval.</p>
+    {% endif %}
+
+    <p><a href="{% url 'home' %}">Back</a></p>
+</body>
+</html>

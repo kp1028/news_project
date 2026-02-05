@@ -1,0 +1,13 @@
+<h2>Publishers</h2>
+
+<ul>
+  {% for publisher in publishers %}
+    <li>{{ publisher.name }}</li>
+  {% empty %}
+    <li>No publishers yet.</li>
+  {% endfor %}
+</ul>
+
+{% if user.role == "editor" %}
+  <a href="{% url 'publisher_create' %}">Add Publisher</a>
+{% endif %}
