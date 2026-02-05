@@ -12,7 +12,9 @@ Readers can view approved articles and subscribe to publishers or journalists.
 
 ## Setup Instructions
 
-1. Install dependencies
+1. Install dependencies and create virtual environmane.
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 Run migrations: python3 manage.py migrate
 Run server: python3 manage.py runserver
